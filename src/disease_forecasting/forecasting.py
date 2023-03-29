@@ -1,5 +1,3 @@
-# src/disease_forecasting/forecasting.py
-
 import os
 import numpy as np
 import pandas as pd
