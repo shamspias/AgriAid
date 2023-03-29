@@ -1,5 +1,3 @@
-# src/data_preprocessing/data_preprocessing.py
-
 import os
 import pandas as pd
 import numpy as np
