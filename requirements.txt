@@ -1,2 +1,16 @@
+# Core libraries
+numpy
+pandas
+scikit-learn
+
+# Machine Learning and Deep Learning libraries
+xgboost
+tensorflow
+keras
+
+# Web Framework and RESTful API
 Flask
 Flask-RESTful
+
+# Image processing library
+Pillow
