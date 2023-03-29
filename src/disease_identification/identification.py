@@ -1,5 +1,3 @@
-# src/disease_identification/identification.py
-
 import os
 import numpy as np
 from tensorflow.keras.preprocessing import image
