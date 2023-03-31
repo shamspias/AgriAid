@@ -1,5 +1,5 @@
 import numpy as np
-from tensorflow.keras.applications.efficientnet import preprocess_input
+from keras.applications.efficientnet import preprocess_input
 
 
 def preprocess_image_data(image_data):
