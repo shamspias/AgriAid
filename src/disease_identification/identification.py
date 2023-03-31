@@ -16,6 +16,12 @@ EPOCHS = 10
 
 
 def load_image_data(file_path, image_size):
+    """
+    Load image data
+    :param file_path:   file path
+    :param image_size:  image size
+    :return:    image data
+    """
     img = image.load_img(file_path, target_size=image_size)
     img_array = image.img_to_array(img)
     img_array = np.expand_dims(img_array, axis=0)
@@ -23,18 +29,28 @@ def load_image_data(file_path, image_size):
 
 
 def prepare_data(images, labels, test_size=0.2):
+    """
+    Prepare data for training
+    :param images:  images
+    :param labels:  labels
+    :param test_size:   test size
+    :return:    training and test data, label encoder
+    """
     X = np.array(images)
     y = np.array(labels)
 
     le = LabelEncoder()
     y = le.fit_transform(y)
 
-    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=test_size, random_state=RANDOM_SEED)
-
-    return X_train, X_test, y_train, y_test, le
+    return train_test_split(X, y, test_size=test_size, random_state=RANDOM_SEED), le
 
 
 def build_identification_model(num_classes):
+    """
+    Build the identification model
+    :param num_classes: number of classes
+    :return:   identification model
+    """
     base_model = EfficientNetB0(weights='imagenet', include_top=False, input_shape=(IMAGE_SIZE[0], IMAGE_SIZE[1], 3))
     x = base_model.output
     x = GlobalAveragePooling2D()(x)
@@ -52,6 +68,15 @@ def build_identification_model(num_classes):
 
 
 def train_identification_model(model, X_train, y_train, batch_size, epochs):
+    """
+    Train the identification model
+    :param model:   identification model
+    :param X_train:     training data
+    :param y_train:     training labels
+    :param batch_size:  batch size
+    :param epochs:    number of epochs
+    :return:    trained identification model
+    """
     data_gen = ImageDataGenerator(
         rotation_range=20,
         width_shift_range=0.2,
@@ -85,7 +110,7 @@ def main():
     images = []
     labels = []
 
-    X_train, X_test, y_train, y_test, label_encoder = prepare_data(images, labels)
+    (X_train, X_test, y_train, y_test), label_encoder = prepare_data(images, labels)
 
     # Build and train the identification model
     num_classes = len(np.unique(y_train))
@@ -101,5 +126,5 @@ def main():
     save_model(model, output_file)
 
 
-if __name__ == 'main':
+if __name__ == '__main__':
     main()
