@@ -35,3 +35,6 @@ models/
 .Trashes
 ehthumbs.db
 Thumbs.db
+
+# environment variable
+.env
