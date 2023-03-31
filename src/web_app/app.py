@@ -1,8 +1,8 @@
 from flask import Flask, request, jsonify
-import utilities
-import identification
-import forecasting
-import data_preprocessing
+from utils import utilities
+from src.disease_identification import identification
+from src.disease_forecasting import forecasting
+from src.data_preprocessing import data_preprocessing
 import config
 
 app = Flask(__name__)
