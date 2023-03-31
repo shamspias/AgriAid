@@ -1,5 +1,5 @@
 from flask import Flask, request, jsonify
-from src.utils import utilities
+from src.web_app.utils import utilities
 from src.disease_identification import identification
 from src.disease_forecasting import forecasting
 from src.data_preprocessing import data_preprocessing
